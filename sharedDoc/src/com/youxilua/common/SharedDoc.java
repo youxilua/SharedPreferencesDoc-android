@@ -7,18 +7,18 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 
-public class SharedDataBase{
+public class SharedDoc{
 	
-	public final static String TAG = SharedDataBase.class.getSimpleName();
+	public final static String TAG = SharedDoc.class.getSimpleName();
 	
 	private SharedPreferences mSharedDoc;
 	private SharedPreferences.Editor sharedDocEditor;
 	private SharedPreferences tempShared;
-	public SharedDataBase(SharedPreferences sharedDoc,Context ctx){
+	public SharedDoc(SharedPreferences sharedDoc,Context ctx){
 		Log.d(TAG, "createt sharedDoc");
 		this.mSharedDoc = sharedDoc;
 		sharedDocEditor = mSharedDoc.edit();
-		tempShared = SharedDataBaseFactory.getTempHash(ctx);
+		tempShared = SharedDocFactory.getTempHash(ctx);
 	}
 	
 	private boolean checkHashCode(String key,String vaule){
