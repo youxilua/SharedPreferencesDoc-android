@@ -9,8 +9,8 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.jayway.android.robotium.solo.Solo;
 import com.youxilua.MainActivity;
-import com.youxilua.common.SharedDataBase;
-import com.youxilua.common.SharedDataBaseFactory;
+import com.youxilua.common.SharedDoc;
+import com.youxilua.common.SharedDocFactory;
 
 public class MainActitiyTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
@@ -29,8 +29,8 @@ public class MainActitiyTest extends
 	
 	@Smoke
 	public void test(){
-		SharedDataBase sdb = SharedDataBaseFactory.newInstanceSharedDatabase(getActivity(),"helloworld");
-		SharedDataBase sdb2 = SharedDataBaseFactory.newInstanceSharedDatabase(getActivity(),"helloworld2");
+		SharedDoc sdb = SharedDocFactory.newInstanceSharedDatabase(getActivity(),"helloworld");
+		SharedDoc sdb2 = SharedDocFactory.newInstanceSharedDatabase(getActivity(),"helloworld2");
 		sdb2.insertOrUpdateDoc("test_lib", "helloworld2");
 		sdb2.insertOrUpdateDoc("test_lib", "helloworld2");
 		sdb.insertOrUpdateDoc("test_lib", "helloworld");
@@ -43,6 +43,9 @@ public class MainActitiyTest extends
 		assertEquals("helloworld", sdb.getDataValue("test_lib"));
 		assertEquals("helloworld", sdb.getDataValue("test_lib"));
 		assertEquals("helloworld2", sdb2.getDataValue("test_lib"));
+		sdb.removeDoc("test_lib");
+		assertNull(sdb.getDataValue("test_lib"));
+		
 //		testQuery.id(R.id.test_shared).text("test->"+sdb.getDataValue("test_lib"));
 //		testQuery.id(R.id.textView1).text("int"+sdb.getDataValue("int")+"long"+sdb.getDataValue("long")
 //				+"boolean"+sdb.getDataValue("boolean")+"float"+ sdb.getDataValue("float")+"null"+sdb.getDataValue("null"));
