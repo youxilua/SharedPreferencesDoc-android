@@ -29,8 +29,8 @@ public class MainActitiyTest extends
 	
 	@Smoke
 	public void test(){
-		SharedDoc sdb = SharedDocFactory.newInstanceSharedDatabase(getActivity(),"helloworld");
-		SharedDoc sdb2 = SharedDocFactory.newInstanceSharedDatabase(getActivity(),"helloworld2");
+		SharedDoc sdb = SharedDocFactory.newInstanceSharedDoc(getActivity(),"helloworld");
+		SharedDoc sdb2 = SharedDocFactory.newInstanceSharedDoc(getActivity(),"helloworld2");
 		sdb2.insertOrUpdateDoc("test_lib", "helloworld2");
 		sdb2.insertOrUpdateDoc("test_lib", "helloworld2");
 		sdb.insertOrUpdateDoc("test_lib", "helloworld");

@@ -18,7 +18,7 @@ public class SharedDoc{
 		Log.d(TAG, "createt sharedDoc");
 		this.mSharedDoc = sharedDoc;
 		sharedDocEditor = mSharedDoc.edit();
-		tempShared = SharedDocFactory.getTempHash(ctx);
+		tempShared = SharedDocFactory.getTempHashDoc(ctx);
 	}
 	
 	private boolean checkHashCode(String key,String vaule){
