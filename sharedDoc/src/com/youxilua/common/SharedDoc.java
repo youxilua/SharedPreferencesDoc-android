@@ -1,7 +1,5 @@
 package com.youxilua.common;
 
-import java.util.Map;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
