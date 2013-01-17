@@ -23,7 +23,7 @@ public class SharedDoc {
 
 	private boolean checkHashCode(String key, String vaule) {
 		int currentHashCode = vaule.hashCode();
-		int valueHashCode = tempShared.getInt(key, -1);
+		int valueHashCode = tempShared.getInt(key, SharedConfig.TEMPDEFAULT);
 		if (currentHashCode == valueHashCode) {
 			Log.d(TAG, "the same string");
 			return false;

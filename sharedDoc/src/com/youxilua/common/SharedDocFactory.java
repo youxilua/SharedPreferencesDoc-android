@@ -7,10 +7,10 @@ import android.util.Log;
 
 public class SharedDocFactory {
 
-	private static SharedPreferences tempShared;
-	private final static String TEMPHASHSHARED = "tempHashDoc";
-
-	private static SharedDoc newInstanceSharedDoc(Context ctx) {
+	private volatile static SharedPreferences tempShared;
+	private final  static String TEMPHASHSHARED = "tempHashDoc";
+	
+	private static SharedDoc getDefaultSharedDoc(Context ctx) {
 		SharedPreferences tempShared = PreferenceManager
 				.getDefaultSharedPreferences(ctx);
 		return new SharedDoc(tempShared, ctx);
@@ -19,10 +19,10 @@ public class SharedDocFactory {
 	private SharedDocFactory() {
 	}
 
-	public static SharedDoc newInstanceSharedDoc(Context ctx, String name) {
+	public static SharedDoc getSharedDoc(Context ctx, String name) {
 
 		if (name == null) {
-			return newInstanceSharedDoc(ctx);
+			return getDefaultSharedDoc(ctx);
 		} else {
 			SharedPreferences tempShared = ctx.getSharedPreferences(name,
 					Context.MODE_PRIVATE);
@@ -34,8 +34,12 @@ public class SharedDocFactory {
 	protected static SharedPreferences getTempHash(Context ctx) {
 		if (tempShared == null) {
 			Log.d(SharedDoc.TAG, "createt temp sharedDoc");
-			tempShared = ctx.getSharedPreferences(TEMPHASHSHARED,
-					Context.MODE_PRIVATE);
+			synchronized(SharedDoc.class){
+				if(tempShared == null){
+					tempShared = ctx.getSharedPreferences(TEMPHASHSHARED,
+							SharedConfig.SHAREDTEMPMODE);
+				}
+			}
 		}
 		return tempShared;
 	}
