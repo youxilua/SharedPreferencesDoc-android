@@ -1,4 +1,6 @@
 SharedPreferencesDoc-android
 ============================
 
-android SharedPreferences curd
+1,一个文档对象,不要进行多线程操作(系统自身 shared 不支持)
+2,一个文档对象,一个值就算类型不同也不要使用一样的key值,如果使用了,shared 会执行最后的一个key值对应的类型
+

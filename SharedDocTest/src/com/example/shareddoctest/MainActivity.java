@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		String x1 = "helloworld";
+		String x1 = "helloworldxxxxxxx";
 
 		SharedDoc s1 = SharedDocFactory.getSharedDoc(this, null);
 		s1.insertOrUpdateDoc("x1", x1);
@@ -46,13 +46,15 @@ public class MainActivity extends Activity {
 		TextView tv5 = new TextView(this);
 		tv5.setText(getValues(s1.getDataValue("f1", SharedType.FLOAT)));
 		ViewGroup.LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+			
+	
 		
-		addContentView(tv, lp);
-		addContentView(tv2, lp);
-		addContentView(tv3, lp);
-		addContentView(tv4, lp);
-		addContentView(tv5, lp);
-		
+		ViewGroup vg = (ViewGroup) findViewById(android.R.id.empty);
+		vg.addView(tv);
+		vg.addView(tv2);
+		vg.addView(tv3);
+		vg.addView(tv4);
+		vg.addView(tv5);
 
 	}
 
